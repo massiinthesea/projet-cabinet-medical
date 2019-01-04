@@ -1,0 +1,59 @@
+<h3 align="center">
+  ajouter un nouveau patient:
+</h3>
+<table>
+<tr>
+    
+
+
+
+<form  (ngSubmit)="onSubmit()">
+    <td>
+  <label>Nom du patient : 
+    <input type="text" name="nomPatient" required [(ngModel)]="nomPatient"><br>
+  </label>
+
+
+  <label>Prénom du patient : 
+    <input type="text" name="prenomPatient" required [(ngModel)]="prenomPatient"><br>
+  </label>
+
+  <label>Numéro SS du patient : 
+    <input type="number" name="numeroPatient" required [(ngModel)]="numeroPatient"><br>
+  </label>
+
+  <label>Date de naissance : 
+    <input type="date" name="naissancePatient" required [(ngModel)]="naissancePatient"><br>
+  </label>
+</td><td>
+  <h3 align="center">Adresse du patient:</h3>
+  
+  <label>Numéro de rue : 
+    <input type="number" name="numeroAdressePatient" required [(ngModel)]="numeroAdressePatient"><br>
+  </label> 
+  
+  <label >Nom de rue : 
+    <input type="text" name="nomRueAdressePatient" required [(ngModel)]="nomRueAdressePatient"><br>
+  </label>
+
+  <label>Code Postal : 
+    <input type="text" name="codePostalAdressePatient" required [(ngModel)]="codePostalAdressePatient"><br>
+  </label>
+
+  <label>Ville : <br/>
+    <input type="text" name="villeAdressePatient" required [(ngModel)]="villeAdressePatient" ><br>
+  </label>
+  <!--<label for="presentation">Présentation : </label>
+  <textarea name="prez" id="presentation"></textarea><br><br>-->
+  <label>sexe
+    <select name="sexePatient "[(ngModel)]="sexePatient">
+      <option *ngFor="let sexe of sexes" [value]="sexe">{{ sexe }}</option>
+    </select> <br/><br/><br/><br/>
+  </label> 
+  <button class="btn btn-primary" type="submit">Ajouter</button>
+</td>
+</form>
+</tr>
+</table>
+
+L'utilisateur s'appelle+ {{ nomPatient }} ++  {{ prenomPatient }} ++ {{ sexePatient }} <br/><br/>
