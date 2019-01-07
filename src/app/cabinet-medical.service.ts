@@ -86,18 +86,19 @@ export class CabinetMedicalService {
   };*/
 
 
-  public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
+  public async addPatient(patient: PatientInterface,dateNaissance): Promise<PatientInterface> {
+    console.log("ok"  +  dateNaissance);
     const res = await this._http.post('/addPatient', {
-        patientName: "zidane",
-        patientForname: "beaugosse",
-        patientNumber: 152425875465342,
-        patientSex: "M",
-        patientBirthday: '1999-05-03',
-        patientFloor: 20,
-        patientStreetNumber: 50,
-        patientStreet: "rue de la cave",
-        patientPostalCode: 13006,
-        patientCity: "Marseille"
+        patientName: patient.nom,
+        patientForname: patient.prénom,
+        patientNumber: patient.numéroSécuritéSociale,
+        patientSex: patient.sexe,
+        patientBirthday: dateNaissance,
+        patientFloor: "",
+        patientStreetNumber: patient.adresse.numéro,
+        patientStreet: patient.adresse.rue,
+        patientPostalCode: patient.adresse.codePostal,
+        patientCity: patient.adresse.ville
     }, {observe: 'response'}).toPromise();
    
     console.log('Add patient renvoie', res);
@@ -108,7 +109,6 @@ export class CabinetMedicalService {
     }
     return null;
   };
-
 
     private getAdressFrom(root:Element): Adresse{
         let node: Element;
