@@ -6,10 +6,24 @@
   }
   .nomPatient{
     padding: 6px;
-    background: rgb(164, 231, 231);
+    background: black(164, 231, 231);
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
     border: rgb(13, 36, 141) solid 2px;  
 
+  }
+  .closebtn {
+    margin-left: 15px;
+    color: red;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: black;
   }

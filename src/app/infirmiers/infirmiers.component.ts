@@ -2,6 +2,7 @@ import { CabinetMedicalService } from './../cabinet-medical.service';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 
 import { Component, OnInit, Input } from '@angular/core';
+import { PatientComponent } from '../patient/patient.component';
 
 @Component({
   selector: 'app-infirmiers',
@@ -10,14 +11,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class InfirmiersComponent implements OnInit {
 
-  constructor( ) {
-    
-   }
+  constructor(private cabinetService: CabinetMedicalService) {
+  }
 
    @Input() infirmier;
 
   ngOnInit() {
     //console.log(this.infirmier.nom);
   }
-
+  async desaffecter(numéro){
+    console.log("dissocier" + numéro);
+    await this.cabinetService.desaffecter(numéro);
+  }
 }

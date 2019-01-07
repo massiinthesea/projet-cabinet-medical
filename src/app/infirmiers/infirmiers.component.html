@@ -5,9 +5,14 @@
 <h3>
     <ul>
         <li class="nomPatient" *ngFor = "let patient of infirmier.patients">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">
+                <input type="button" value="désaffecter" (click) ="desaffecter(patient.nom)"></span> 
+
             {{patient.nom}}
         </li>
+        
     
     </ul>
+    
 </h3>
 
