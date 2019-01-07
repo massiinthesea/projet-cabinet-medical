@@ -63,28 +63,6 @@ export class CabinetMedicalService {
     return cabinet;
   };
 
-  /*public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
-    const res = await this._http.post('/addPatient', {
-        patientName: patient.nom,
-        patientForname: patient.prénom,
-        patientNumber: patient.numéroSécuritéSociale,
-        patientSex: patient.sexe,
-        patientBirthday: 'AAAA-MM-JJ',
-        patientFloor: patient.adresse.étage,
-        patientStreetNumber: patient.adresse.numéro,
-        patientStreet: patient.adresse.rue,
-        patientPostalCode: patient.adresse.codePostal,
-        patientCity: patient.adresse.ville
-    }, {observe: 'response'}).toPromise();
-   
-    console.log('Add patient renvoie', res);
-    if (res.status === 200) {
-        // OK on peut ajouter en local
-        this.cabinet.patientsNonAffectes.push( patient );
-    }
-    return null;
-  };*/
-
 
   public async addPatient(patient: PatientInterface,dateNaissance): Promise<PatientInterface> {
     console.log("ok"  +  dateNaissance);
@@ -104,11 +82,22 @@ export class CabinetMedicalService {
     console.log('Add patient renvoie', res);
     if (res.status === 200) {
         // OK on peut ajouter en local
-        console.log('ajout success mon poto');
-        //this.cabinet.patientsNonAffectes.push( patient );
+
+        this.cabinet.patientsNonAffectes.push( patient );
     }
     return null;
   };
+
+  public async desaffecter(numéroSécu){
+    const res = await this._http.post( "/affectation", {
+      infirmier: "none",
+      patient: "110082516002010"
+    }, {observe: 'response'}).toPromise();
+    if (res.status === 200) {
+      console.log("patient désaffecté");
+  }
+  }
+
 
     private getAdressFrom(root:Element): Adresse{
         let node: Element;
