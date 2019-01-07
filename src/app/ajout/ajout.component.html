@@ -56,4 +56,9 @@
 </tr>
 </table>
 
-L'utilisateur s'appelle+ {{ nomPatient }} ++  {{ prenomPatient }} ++ {{ sexePatient }} <br/><br/>
+ <br/><br/>
+ <div  *ngIf="afficherMessage">
+  <div class="alert">
+    Vous devez remplir tous les champs
+  </div>
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CabinetMedicalService } from './../cabinet-medical.service';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { PatientInterface } from '../dataInterfaces/patient';
+import { CabinetInterface } from '../dataInterfaces/cabinet';
+import { PatientComponent } from '../patient/patient.component';
 
 
 @Component({
@@ -18,54 +20,50 @@ export class AjoutComponent implements OnInit {
   private nomRueAdressePatient;
   private codePostalAdressePatient;
   private villeAdressePatient;
-
-
   private sexePatient;
+  private afficherMessage=false;
 
   private sexes = ['M', 'F'];
 
   private patient: PatientInterface;
 
   private getPatient() : PatientInterface{
-    return {
-      prénom : this.prenomPatient, 
-      nom: this.nomPatient ,
-      sexe : this.sexePatient,
-      numéroSécuritéSociale : this.numeroPatient,
-      adresse: {
-        ville: this.villeAdressePatient,
-        codePostal: this.codePostalAdressePatient,
-        rue: this.nomRueAdressePatient,
-        numéro: this.numeroAdressePatient,
-        étage: ""
+
+    if((this.prenomPatient != undefined && this.prenomPatient != "") && this.nomPatient != undefined  && this.nomPatient != "" && this.sexePatient != undefined && this.numeroPatient != undefined
+      && this.villeAdressePatient != undefined  && this.villeAdressePatient != "" && this.codePostalAdressePatient != undefined && this.codePostalAdressePatient != "" && this.nomRueAdressePatient != undefined 
+      && this.numeroAdressePatient != undefined  && this.numeroAdressePatient != ""  ){
+      return {
+        prénom : this.prenomPatient, 
+        nom: this.nomPatient ,
+        sexe : this.sexePatient,
+        numéroSécuritéSociale : this.numeroPatient,
+        adresse: {
+          ville: this.villeAdressePatient,
+          codePostal: this.codePostalAdressePatient,
+          rue: this.nomRueAdressePatient,
+          numéro: this.numeroAdressePatient,
+          étage: ""
+        }
       }
-  }
+    }
+    else
+      this.afficherMessage=true;
   };
 
-  constructor(cabinetMedicalService: CabinetMedicalService ) {
-    
-    this.onSubmit(cabinetMedicalService);
-  }
 
-  /*constructor(patient: PatientInterface ) {
 
-    this.initPatient(patient);
-  }*/
+ constructor(private cabinetService: CabinetMedicalService) {
+}
+
 
   ngOnInit() {
   }
 
-/*  async onSubmit(PatientInterface) {
-    this.patient = await PatientInterface.addPatient(this.patient);
-    //console.log( this.cms );
-    console.log("formulaire valizzzzzdé ok"+this.nomPatient ); 
-  }*/
-  async onSubmit(cabinetMedicalService){
+  async onSubmit(){
     this.patient=this.getPatient();
-    console.log("saluuuuuut****  " + this.patient.nom);
-    this.patient = await cabinetMedicalService.addPatient(this.patient);
-    console.log("saluuuuuut----  " + this.patient.nom);
-    console.log("formulaire validé ok"+this.nomPatient ); 
-    
+    if(this.patient != undefined){
+      this.patient = await this.cabinetService.addPatient(this.patient, this.naissancePatient);
+      this.afficherMessage=false;
+    }
   }
 }
