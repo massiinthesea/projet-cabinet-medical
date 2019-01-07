@@ -31,7 +31,7 @@ export class AjoutComponent implements OnInit {
 
     if((this.prenomPatient != undefined && this.prenomPatient != "") && this.nomPatient != undefined  && this.nomPatient != "" && this.sexePatient != undefined && this.numeroPatient != undefined
       && this.villeAdressePatient != undefined  && this.villeAdressePatient != "" && this.codePostalAdressePatient != undefined && this.codePostalAdressePatient != "" && this.nomRueAdressePatient != undefined 
-      && this.numeroAdressePatient != undefined  && this.numeroAdressePatient != ""  ){
+      && this.nomRueAdressePatient != "" && this.numeroAdressePatient != undefined  && this.numeroAdressePatient != ""  ){
       return {
         prénom : this.prenomPatient, 
         nom: this.nomPatient ,
